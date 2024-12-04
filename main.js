@@ -47,7 +47,7 @@ function truncateNum(num){
 
 function cashout(){
     gameInProgress = false;
-    let winAudio = new Audio('.sounds/win.m4a');
+    let winAudio = new Audio('./sounds/win.m4a');
     winAudio.play();
     let profit = parseFloat(document.getElementById('profit').innerText.replace('$', ''));
     let betElm = document.getElementById('betAmmount');

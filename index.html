@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="main.js" defer></script>
+    <title>Mines</title>
+    <style>
+        textarea:focus, input:focus{
+            outline: none;
+        }
+
+        #tiles{
+            display: grid;
+            grid-template-columns: repeat(5, clamp(10px, 10vw, 125px));
+            grid-template-rows: repeat(5, clamp(10px, 10vw, 125px));
+            gap: 1rem;
+        }
+
+        .tile{
+            padding: 2rem;
+            aspect-ratio: 1;
+            background-color: #27272a;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 7px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transform-origin: center;
+        }
+
+        .tile:hover{
+            background-color: #3f3f46;
+            scale: 1.05;
+        }
+
+        @keyframes reveal {
+            from {scale:0}
+            to {scale: 1}
+        }
+
+        .tile-reveal{
+            background-color: #0a0a0a27;
+            padding: 2rem;  
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            animation: reveal 0.1s forwards;
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #cacaca;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b1b1b1;
+        }
+    </style>
+</head>
+<body>
+    <div class="absolute flex justify-center items-center w-full h-full bg-neutral-950 text-white">
+        <div class="flex gap-5">
+          <div class="rounded bg-neutral-900 p-5 overflow-hidden">
+            <div class="font-semibold grid text-neutral-300 text-xl flex flex-col gap-5">
+                <div id="balance" data-balance="100">
+                    Current Balance: $100
+                </div>
+                <div>
+                    Bet Amount
+                    <div class="flex gap-2 text-neutral-100">
+                        <div class="flex rounded border-2 cursor-pointer hover:bg-neutral-800 duration-300 sel border-neutral-500 items-center align-center p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                            <input id="betAmmount" type="number" value="0.00" class="disabled:opacity-50 rounded p-1 bg-transparent ring-0">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    Bombs
+                    <select id="bombCount" class="disabled:opacity-50 text-neutral-100 block w-full px-2 bg-neutral-900 border-2 cursor-pointer hover:bg-neutral-800 duration-300 border-neutral-500 rounded p-1">
+                        <option value="1">1 </option>
+                        <option value="2">2 </option>
+                        <option value="3">3 </option>
+                        <option value="4">4 </option>
+                        <option value="5">5 </option>
+                        <option value="6">6 </option>
+                        <option value="7">7 </option>
+                        <option value="8">8 </option>
+                        <option value="9">9 </option>
+                        <option value="10">10 </option>
+                        <option value="11">11 </option>
+                        <option value="12">12 </option>
+                        <option value="13">13 </option>
+                        <option value="14">14 </option>
+                        <option value="15">15 </option>
+                        <option value="16">16 </option>
+                        <option value="17">17 </option>
+                        <option value="18">18 </option>
+                        <option value="19">19 </option>
+                        <option value="20">20 </option>
+                        <option value="21">21 </option>
+                        <option value="22">22 </option>
+                        <option value="23">23 </option>
+                        <option value="24">24 </option>
+                    </select>
+                </div>
+
+                <button id="betBtn" class="disabled:opacity-50 disabled:pointer-events-none disabled:scale-95 p-2 px-5 bg-blue-600 rounded hover:scale-105 cursor-pointer duration-300">Bet</button>
+                
+                <div id="gameInfo" style="transform: translateX(-110%)" class="flex flex-col gap-2">
+                    <div class="flex gap-2 w-full text-md text-xl">
+                        <div class="flex-1">
+                            Bombs
+                            <div id="bombsCounter" class="border-2 rounded border-neutral-500 px-2 py-1">
+                                1
+                            </div>
+                        </div>
+
+                        <div class="flex-1 text-md">
+                            Gems
+                            <div id="gemsCounter" class="border-2 rounded border-neutral-500 px-2 py-1">
+                                24
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <div id="multiplier">Total profit (1.00x)</div>
+                        <div id="profit" class="border-2 rounded border-neutral-500 px-2 py-1">
+                            $0.00
+                        </div>
+                    </div>
+
+                    <button id="cashoutBtn" class="w-full p-2 px-5 bg-blue-600 rounded hover:scale-105 cursor-pointer duration-300">
+                        Cashout
+                    </button>
+                </div>
+            </div>
+          </div>
+          <div id="tiles" class="rounded bg-neutral-900 p-5">
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+          </div>  
+        </div>
+    </div>
+</body>
+</html>

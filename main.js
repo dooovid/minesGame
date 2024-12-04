@@ -146,7 +146,7 @@ function startGame(){
     let balance = parseFloat(balanceElm.getAttribute('data-balance'));
 
     if(balance < betVal || betVal <= 0){
-        let errorAudio = new Audio('./error.m4a');
+        let errorAudio = new Audio('./sounds/error.m4a');
         errorAudio.play();
         if(balance < betVal) balanceElm.animate(errorAnimation.frames, errorAnimation.timing);
         if(betVal <= 0) betElm.animate(errorAnimation.frames, errorAnimation.timing);

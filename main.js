@@ -47,7 +47,7 @@ function truncateNum(num){
 
 function cashout(){
     gameInProgress = false;
-    let winAudio = new Audio('/sounds/win.m4a');
+    let winAudio = new Audio('./sounds/win.m4a');
     winAudio.play();
     let profit = parseFloat(document.getElementById('profit').innerText.replace('$', ''));
     let betElm = document.getElementById('betAmmount');
@@ -146,7 +146,7 @@ function startGame(){
     let balance = parseFloat(balanceElm.getAttribute('data-balance'));
 
     if(balance < betVal || betVal <= 0){
-        let errorAudio = new Audio('/sounds/error.m4a');
+        let errorAudio = new Audio('./sounds/error.m4a');
         errorAudio.play();
         if(balance < betVal) balanceElm.animate(errorAnimation.frames, errorAnimation.timing);
         if(betVal <= 0) betElm.animate(errorAnimation.frames, errorAnimation.timing);

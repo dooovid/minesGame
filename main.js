@@ -23,15 +23,6 @@ const errorAnimation = {
         duration: 300,
     }
 }
-
-function cryptoRand() {
-    const factor = 10 ** 4;
-    const randomUint32 = new Uint32Array(1);
-    window.crypto.getRandomValues(randomUint32);
-    return (randomUint32[0] % factor) / factor;
-}
-
-
 let mainArray = [[{"multi":1.03,"prob":0.9611},{"multi":1.08,"prob":0.9166},{"multi":1.12,"prob":0.8839},{"multi":1.18,"prob":0.8389},{"multi":1.24,"prob":0.7983},{"multi":1.3,"prob":0.7615000000000001},{"multi":1.37,"prob":0.7226},{"multi":1.46,"prob":0.6779999999999999},{"multi":1.55,"prob":0.6386999999999999},{"multi":1.65,"prob":0.6},{"multi":1.77,"prob":0.5593},{"multi":1.9,"prob":0.521},{"multi":2.06,"prob":0.4805},{"multi":2.25,"prob":0.44},{"multi":2.47,"prob":0.4008},{"multi":2.75,"prob":0.36},{"multi":3.09,"prob":0.32030000000000003},{"multi":3.54,"prob":0.2796},{"multi":4.12,"prob":0.2402},{"multi":4.95,"prob":0.2},{"multi":6.19,"prob":0.15990000000000001},{"multi":8.25,"prob":0.12},{"multi":12.38,"prob":0.0799},{"multi":24.75,"prob":0.04}],[{"multi":1.08,"prob":0.9166},{"multi":1.17,"prob":0.8461},{"multi":1.29,"prob":0.7674},{"multi":1.41,"prob":0.7021},{"multi":1.56,"prob":0.6346},{"multi":1.74,"prob":0.5689},{"multi":1.94,"prob":0.5103},{"multi":2.18,"prob":0.5440999999999999},{"multi":2.47,"prob":0.4008},{"multi":2.83,"prob":0.34979999999999994},{"multi":3.26,"prob":0.3036},{"multi":3.81,"prob":0.25980000000000003},{"multi":4.5,"prob":0.22},{"multi":5.4,"prob":0.1833},{"multi":6.6,"prob":0.15},{"multi":8.25,"prob":0.12},{"multi":10.61,"prob":0.0933},{"multi":14.14,"prob":0.07},{"multi":19.8,"prob":0.05},{"multi":29.7,"prob":0.0333},{"multi":49.5,"prob":0.02},{"multi":99,"prob":0.01},{"multi":297,"prob":0.0033333}],[{"multi":1.12,"prob":0.8839},{"multi":1.29,"prob":0.7674},{"multi":1.48,"prob":0.6689},{"multi":1.71,"prob":0.5789},{"multi":2,"prob":0.495},{"multi":2.35,"prob":0.42119999999999996},{"multi":2.79,"prob":0.35479999999999995},{"multi":3.35,"prob":0.2955},{"multi":4.07,"prob":0.2432},{"multi":5,"prob":0.198},{"multi":6.26,"prob":0.15810000000000002},{"multi":7.96,"prob":0.1243},{"multi":10.35,"prob":0.0956},{"multi":13.8,"prob":0.0717},{"multi":18.97,"prob":0.0521},{"multi":27.11,"prob":0.0365},{"multi":40.66,"prob":0.024300000000000002},{"multi":65.06,"prob":0.0152},{"multi":113.85,"prob":0.008695699999999999},{"multi":227.7,"prob":0.0043478},{"multi":569.25,"prob":0.0017391000000000002},{"multi":2277,"prob":0.0004348}],[{"multi":1.18,"prob":0.8389},{"multi":1.41,"prob":0.7021},{"multi":1.71,"prob":0.5789},{"multi":2.09,"prob":0.4736},{"multi":2.58,"prob":0.3837},{"multi":3.32,"prob":0.3065},{"multi":4.09,"prob":0.242},{"multi":5.26,"prob":0.1882},{"multi":6.88,"prob":0.1438},{"multi":9.17,"prob":0.1079},{"multi":15.21,"prob":0.0791},{"multi":17.52,"prob":0.0565},{"multi":25.3,"prob":0.0391},{"multi":37.95,"prob":0.026000000000000002},{"multi":59.64,"prob":0.0165},{"multi":99.39,"prob":0.009960799999999999},{"multi":178.91,"prob":0.0055335},{"multi":357.81,"prob":0.0027668},{"multi":834.9,"prob":0.0011858},{"multi":2504.7,"prob":0.0003953},{"multi":12523.5,"prob":0.0000791}],[{"multi":1.24,"prob":0.7983},{"multi":1.56,"prob":0.6346},{"multi":2,"prob":0.495},{"multi":2.58,"prob":0.3837},{"multi":3.39,"prob":0.292},{"multi":4.52,"prob":0.21899999999999997},{"multi":6.14,"prob":0.1612},{"multi":8.5,"prob":0.1164},{"multi":12.04,"prob":0.08220000000000001},{"multi":17.52,"prob":0.0565},{"multi":26.27,"prob":0.037599999999999995},{"multi":40.87,"prob":0.0242},{"multi":66.41,"prob":0.0149},{"multi":113.85,"prob":0.008695699999999999},{"multi":208.72,"prob":0.0047432},{"multi":417.45,"prob":0.0023715},{"multi":939.26,"prob":0.001054},{"multi":2504.7,"prob":0.0003953},{"multi":8766.45,"prob":0.00011289999999999999},{"multi":52598.7,"prob":0.0000188}],[{"multi":1.3,"prob":0.7615000000000001},{"multi":1.74,"prob":0.5689},{"multi":2.35,"prob":0.42119999999999996},{"multi":3.23,"prob":0.3065},{"multi":4.52,"prob":0.21899999999999997},{"multi":6.46,"prob":0.1532},{"multi":9.44,"prob":0.1048},{"multi":14.17,"prob":0.0698},{"multi":21.89,"prob":0.0452},{"multi":35.03,"prob":0.0282},{"multi":58.38,"prob":0.0169},{"multi":102.17,"prob":0.0096897},{"multi":189.75,"prob":0.0052174},{"multi":379.5,"prob":0.0026087},{"multi":834.9,"prob":0.0011858},{"multi":2087.25,"prob":0.0004743},{"multi":6261.75,"prob":0.00015810000000000002},{"multi":25047,"prob":0.000039500000000000005},{"multi":175329,"prob":0.0000056}],[{"multi":1.37,"prob":0.7226},{"multi":1.94,"prob":0.5103},{"multi":2.79,"prob":0.35479999999999995},{"multi":4.09,"prob":0.242},{"multi":6.14,"prob":0.1612},{"multi":9.44,"prob":0.1048},{"multi":14.95,"prob":0.0662},{"multi":24.47,"prob":0.0404},{"multi":41.6,"prob":0.023700000000000002},{"multi":73.95,"prob":0.013300000000000001},{"multi":138.66,"prob":0.007139799999999999},{"multi":277.33,"prob":0.0035698},{"multi":600.87,"prob":0.0016476},{"multi":1442.1,"prob":0.0006865},{"multi":3965.77,"prob":0.0002496},{"multi":13219.25,"prob":0.0000749},{"multi":59486.62,"prob":0.0000166},{"multi":475893,"prob":0.0000021000000000000002}],[{"multi":1.46,"prob":0.6779999999999999},{"multi":2.18,"prob":0.45409999999999995},{"multi":3.35,"prob":0.2955},{"multi":5.26,"prob":0.1882},{"multi":8.5,"prob":0.1164},{"multi":14.17,"prob":0.0698},{"multi":24.47,"prob":0.0404},{"multi":44.05,"prob":0.022400000000000003},{"multi":83.2,"prob":0.0118},{"multi":166.5,"prob":0.0059495},{"multi":356.56,"prob":0.0027765},{"multi":831.98,"prob":0.0011899},{"multi":2163.15,"prob":0.00045769999999999996},{"multi":6489.45,"prob":0.0001526},{"multi":23794.65,"prob":0.000041599999999999995},{"multi":118973.25,"prob":0.0000083},{"multi":1070759.25,"prob":9.000000000000001e-7}],[{"multi":1.55,"prob":0.6386999999999999},{"multi":2.47,"prob":0.4008},{"multi":4.07,"prob":0.2432},{"multi":6.88,"prob":0.1438},{"multi":12.04,"prob":0.08220000000000001},{"multi":21.89,"prob":0.0452},{"multi":41.6,"prob":0.023700000000000002},{"multi":83.2,"prob":0.0118},{"multi":176.8,"prob":0.0055994999999999994},{"multi":404.1,"prob":0.0024499},{"multi":1010.26,"prob":0.0009799},{"multi":2828.73,"prob":0.00035000000000000005},{"multi":9139.39,"prob":0.0001077},{"multi":36773.55,"prob":0.0000269},{"multi":202254.52,"prob":0.0000049},{"multi":2022545.25,"prob":5e-7}],[{"multi":1.65,"prob":0.6},{"multi":2.83,"prob":0.34979999999999994},{"multi":5,"prob":0.198},{"multi":9.17,"prob":0.1079},{"multi":17.52,"prob":0.0565},{"multi":35.03,"prob":0.0282},{"multi":73.95,"prob":0.013300000000000001},{"multi":166.4,"prob":0.0059495},{"multi":404.1,"prob":0.0024499},{"multi":1077.61,"prob":0.0009186999999999999},{"multi":3232.84,"prob":0.0003062},{"multi":11314.94,"prob":0.00008750000000000001},{"multi":49031.4,"prob":0.0000202},{"multi":294188.4,"prob":0.0000034},{"multi":3236072.4,"prob":3e-7}],[{"multi":1.77,"prob":0.5593},{"multi":3.26,"prob":0.3036},{"multi":6.26,"prob":0.15810000000000002},{"multi":12.51,"prob":0.0791},{"multi":26.27,"prob":0.037599999999999995},{"multi":58.38,"prob":0.0169},{"multi":138.66,"prob":0.007139799999999999},{"multi":356.56,"prob":0.0027765},{"multi":1010.26,"prob":0.0009799},{"multi":3232.84,"prob":0.0003062},{"multi":12123.15,"prob":0.00008170000000000001},{"multi":56574.69,"prob":0.000017500000000000002},{"multi":367735.5,"prob":0.0000027},{"multi":4412826,"prob":2.0000000000000002e-7}],[{"multi":1.9,"prob":0.521},{"multi":3.81,"prob":0.25980000000000003},{"multi":7.96,"prob":0.1243},{"multi":17.52,"prob":0.0565},{"multi":40.87,"prob":0.0242},{"multi":102.17,"prob":0.0096897},{"multi":277.33,"prob":0.0035698},{"multi":831.98,"prob":0.0011899},{"multi":2828.73,"prob":0.00035000000000000005},{"multi":11314.94,"prob":0.00008750000000000001},{"multi":56574.69,"prob":0.000017500000000000002},{"multi":396022.85,"prob":0.0000025},{"multi":5148297,"prob":2.0000000000000002e-7}],[{"multi":2.06,"prob":0.4805},{"multi":4.5,"prob":0.22},{"multi":10.35,"prob":0.0956},{"multi":25.3,"prob":0.0391},{"multi":66.41,"prob":0.0149},{"multi":189.75,"prob":0.0052174},{"multi":600.87,"prob":0.0016476},{"multi":2163.15,"prob":0.00045769999999999996},{"multi":9193.39,"prob":0.0001077},{"multi":49301.4,"prob":0.0000202},{"multi":367735.5,"prob":0.0000027},{"multi":5148297,"prob":2.0000000000000002e-7}],[{"multi":2.25,"prob":0.44},{"multi":5.4,"prob":0.1833},{"multi":13.8,"prob":0.0717},{"multi":37.95,"prob":0.026000000000000002},{"multi":113.85,"prob":0.008695699999999999},{"multi":379.5,"prob":0.0026087},{"multi":1442.1,"prob":0.0006865},{"multi":6489.45,"prob":0.0001526},{"multi":36773.55,"prob":0.0000269},{"multi":294188.4,"prob":0.0000034},{"multi":4412826,"prob":2.0000000000000002e-7}],[{"multi":2.47,"prob":0.4008},{"multi":6.6,"prob":0.15},{"multi":18.97,"prob":0.0521},{"multi":59.64,"prob":0.0165},{"multi":208.72,"prob":0.0047432},{"multi":834.9,"prob":0.0011858},{"multi":3965.77,"prob":0.0002496},{"multi":23794.65,"prob":0.000041599999999999995},{"multi":202254.52,"prob":0.0000049},{"multi":3236072.4,"prob":3e-7}],[{"multi":2.75,"prob":0.36},{"multi":8.25,"prob":0.12},{"multi":27.11,"prob":0.0365},{"multi":99.39,"prob":0.009960799999999999},{"multi":417.45,"prob":0.0023715},{"multi":2087.25,"prob":0.0004743},{"multi":13219.25,"prob":0.0000749},{"multi":118973.25,"prob":0.0000083},{"multi":2022545.25,"prob":5e-7}],[{"multi":3.09,"prob":0.32030000000000003},{"multi":10.61,"prob":0.0933},{"multi":40.66,"prob":0.024300000000000002},{"multi":178.91,"prob":0.0055335},{"multi":939.26,"prob":0.001054},{"multi":6261.75,"prob":0.00015810000000000002},{"multi":59486.62,"prob":0.0000166},{"multi":1070759.25,"prob":9.000000000000001e-7}],[{"multi":3.54,"prob":0.2796},{"multi":14.14,"prob":0.07},{"multi":65.06,"prob":0.0152},{"multi":357.81,"prob":0.0027668},{"multi":2504.7,"prob":0.0003953},{"multi":25047,"prob":0.000039500000000000005},{"multi":475893,"prob":0.0000021000000000000002}],[{"multi":4.12,"prob":0.2402},{"multi":19.8,"prob":0.05},{"multi":113.85,"prob":0.008695699999999999},{"multi":834.9,"prob":0.0011858},{"multi":8766.45,"prob":0.00011289999999999999},{"multi":175329,"prob":0.0000056}],[{"multi":4.95,"prob":0.2},{"multi":29.7,"prob":0.0333},{"multi":227.7,"prob":0.0043478},{"multi":2504.7,"prob":0.0003953},{"multi":52598.7,"prob":0.0000188}],[{"multi":6.19,"prob":0.15990000000000001},{"multi":49.5,"prob":0.02},{"multi":596.25,"prob":0.0017391000000000002},{"multi":12523.5,"prob":0.0000791}],[{"multi":8.25,"prob":0.12},{"multi":99,"prob":0.01},{"multi":2277,"prob":0.0004348}],[{"multi":12.37,"prob":0.08},{"multi":297,"prob":0.0033333}],[{"multi":24.75,"prob":0.04}]]
 
 const gemSvg = '<svg width="100" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><path fill="#BDDDF4" d="M13 3H7l-7 9h10z"></path><path fill="#5DADEC" d="M36 12l-7-9h-6l3 9z"></path><path fill="#4289C1" d="M26 12h10L18 33z"></path><path fill="#8CCAF7" d="M10 12H0l18 21zm3-9l-3 9h16l-3-9z"></path><path fill="#5DADEC" d="M18 33l-8-21h16z"></path></svg>';
@@ -39,6 +30,7 @@ const bombSvg = '<svg width="100" viewBox="0 0 128 128" xmlns="http://www.w3.org
 let gems = 0;
 let bombs = 1;
 let gameInProgress = false;
+let bombTiles = []
 
 function truncateNum(num){
     let re = new RegExp('^-?\\d+(?:\.\\d{0,' + (2 || -1) + '})?');
@@ -94,22 +86,43 @@ function loseGame(){
     document.getElementById('profit').textContent = '0.00';
 }
 
-function calcWin(prob){
-    const numCompare = cryptoRand();
-    console.log(prob, numCompare);
-    if(numCompare <= prob) return true
-    return false;
+function randTiles(count) {
+    const uniqueValues = new Set();
+    while (uniqueValues.size < count) {
+        const randomArray = new Uint8Array(1);
+        window.crypto.getRandomValues(randomArray);
+        const value = randomArray[0] % 25; // Adjust range to 0-max
+        uniqueValues.add(value); // Automatically ensures no duplicates
+    }
+    return Array.from(uniqueValues); 
 }
 
-function reveal(tile){
+
+function highlightBombs(){
+    if(document.querySelectorAll('.tile.highLighted').length>0){
+        document.querySelectorAll('.tile').forEach((e, i) => {
+            e.classList.remove('highLighted')
+        })
+        return;
+    }
+    Array.from(document.querySelector('#tiles').children).forEach((e, i) => {
+        if(bombTiles.includes(i)) e.classList.add('highLighted')
+        else e.classList.remove('highLighted')
+    })
+}
+
+function reveal(tile, tileNum){
     if(!gameInProgress) return;
     if(tile.getAttribute('data-working') == 'true') return
     tile.setAttribute('data-working', 'true');
     let revealElm = document.createElement('div');
     revealElm.classList = "tile-reveal";
-    
-    let win = calcWin(mainArray[bombs-1][gems].prob);
-    //let win = calcWin((25-(gems+1))/25);
+
+    console.log(tileNum)
+    console.log(bombTiles)
+    console.log(bombTiles.includes(tileNum))
+
+    let win = !bombTiles.includes(tileNum)
     revealElm.innerHTML = (win) ? gemSvg : bombSvg;
     (win) ? gems++ : gameInProgress = false;
 
@@ -152,8 +165,10 @@ function startGame(){
         if(betVal <= 0) betElm.animate(errorAnimation.frames, errorAnimation.timing);
         return;
     }
+
     let startAudio = new Audio('./sounds/start.m4a');
     startAudio.play();
+    bombTiles = [];
 
     balanceElm.setAttribute('data-balance', truncateNum(balance-betVal))
     balanceElm.innerText = `Current Balance: $${truncateNum(balance-betVal)}`;
@@ -169,6 +184,7 @@ function startGame(){
     //start animation
     Array.from(document.getElementById('tiles').children).forEach(tile => {tile.innerHTML = ''; tile.classList = 'tile'})
     document.querySelectorAll('.tile').forEach((tile, i) => {
+        tile.setAttribute('data-tile', i)
         tile.animate(
             [{ transform: "rotate(180deg) scale(1)" },
             { transform: "rotate(180deg) scale(1.2)"},
@@ -187,6 +203,8 @@ function startGame(){
 
     //slide game info in
     gameInfo.animate([{transform: "translateX(-100%)"}, {transform: "translateX(0%)"}], {duration: 500, fill: "forwards", easing: "ease-out"});
+    bombTiles = randTiles(bombCount)
+    //highlightTiles();
     gameInProgress = true;
 }
 
@@ -194,5 +212,8 @@ document.getElementById('betBtn').addEventListener('click', () => startGame());
 document.getElementById('cashoutBtn').addEventListener('click', () => cashout());
 document.getElementById('tiles').addEventListener('click', (e) => {
     const tile = e.target.closest('.tile');
-    if (tile) reveal(tile)
+    if (tile) reveal(tile, parseInt(tile.getAttribute('data-tile')))
 });
+addEventListener('keydown', e => {
+    if(e.key == "Shift") highlightBombs()
+})
